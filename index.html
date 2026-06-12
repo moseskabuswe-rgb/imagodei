@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moses Kabuswe Jr.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ───────────────────────────────────────────── */
+    :root {
+      --cream:     #fdf8f0;
+      --parchment: #f2e9d8;
+      --sand:      #e0ceaf;
+      --espresso:  #2c1a0e;
+      --bark:      #5c3d1e;
+      --gold:      #b8882a;
+      --mist:      #9e8f7f;
+      --white:     #ffffff;
+
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+      --ff-mono:    'DM Mono', monospace;
+
+      --max: 1080px;
+      --section-gap: 7rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--espresso);
+      font-family: var(--ff-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── UTILITY ─────────────────────────────────────────── */
+    .container { width: min(var(--max), 100% - 3rem); margin-inline: auto; }
+    .tag {
+      display: inline-block;
+      font-family: var(--ff-mono);
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--sand);
+      border-radius: 2px;
+      padding: .2em .7em;
+    }
+    .section-label {
+      font-family: var(--ff-mono);
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-bottom: 1.2rem;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,248,240,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--sand);
+      padding: 1rem 0;
+    }
+    nav .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(var(--max), 100% - 3rem);
+      margin-inline: auto;
+    }
+    nav .wordmark {
+      font-family: var(--ff-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: var(--espresso);
+    }
+    nav .wordmark span { color: var(--gold); }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul a {
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--bark);
+      transition: color .2s;
+    }
+    nav ul a:hover { color: var(--gold); }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    #hero {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 8rem 0 5rem;
+      background:
+        radial-gradient(ellipse 70% 50% at 80% 40%, rgba(184,136,42,.08) 0%, transparent 60%),
+        var(--cream);
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .hero-text .eyebrow {
+      font-family: var(--ff-mono);
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      margin-top: 1.4rem;
+    }
+    #rotating-word {
+      display: inline-block;
+      color: var(--gold);
+      opacity: 1;
+      transition: opacity .3s ease, transform .3s ease;
+      min-width: 2ch;
+    }
+    #rotating-word.fade-out {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    #rotating-word.fade-in-word {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    .hero-text h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--espresso);
+      margin-bottom: 1.5rem;
+    }
+    .hero-text h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-text .bio {
+      font-size: 1.05rem;
+      color: var(--bark);
+      max-width: 44ch;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: .75em 1.75em;
+      border-radius: 3px;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-primary {
+      background: var(--espresso);
+      color: var(--cream);
+      border: 1px solid var(--espresso);
+    }
+    .btn-primary:hover { background: var(--bark); border-color: var(--bark); }
+    .btn-outline {
+      background: transparent;
+      color: var(--espresso);
+      border: 1px solid var(--sand);
+    }
+    .btn-outline:hover { border-color: var(--espresso); }
+
+    /* hero visual — layered role cards */
+    .hero-visual {
+      position: relative;
+      height: 480px;
+    }
+    .role-card {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid var(--sand);
+      border-radius: 8px;
+      padding: 1.1rem 1.4rem;
+      box-shadow: 0 4px 24px rgba(44,26,14,.07);
+      width: 220px;
+    }
+    .role-card .rc-label {
+      font-family: var(--ff-mono);
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-bottom: .35rem;
+    }
+    .role-card .rc-title {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--espresso);
+      line-height: 1.2;
+    }
+    .role-card .rc-sub {
+      font-size: .75rem;
+      color: var(--mist);
+      margin-top: .25rem;
+      line-height: 1.4;
+    }
+    .role-card:nth-child(1) { top: 10px;  left: 10px;  transform: rotate(-2deg);  z-index: 4; }
+    .role-card:nth-child(2) { top: 120px; left: 90px;  transform: rotate(1.5deg); z-index: 3; }
+    .role-card:nth-child(3) { top: 230px; left: 10px;  transform: rotate(-1deg);  z-index: 2; }
+    .role-card:nth-child(4) { top: 340px; left: 90px;  transform: rotate(2deg);   z-index: 1; }
+    .rc-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      margin-right: .45rem;
+      vertical-align: middle;
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────────── */
+    .divider {
+      width: min(var(--max), 100% - 3rem);
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--sand) 30%, var(--sand) 70%, transparent);
+    }
+
+    /* ── ABOUT ───────────────────────────────────────────── */
+    #about { padding: var(--section-gap) 0; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-left h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--espresso);
+      margin-bottom: 1.5rem;
+    }
+    .about-left h2 em { font-style: italic; color: var(--gold); }
+    .about-left p {
+      color: var(--bark);
+      font-size: .97rem;
+      line-height: 1.8;
+    }
+    .about-right { display: flex; flex-direction: column; gap: 1.5rem; }
+    .trait-row {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--parchment);
+    }
+    .trait-row:last-child { border-bottom: none; }
+    .trait-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .trait-row h4 {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--espresso);
+      margin-bottom: .3rem;
+    }
+    .trait-row p { font-size: .9rem; color: var(--mist); line-height: 1.6; }
+
+    /* ── PROJECTS ────────────────────────────────────────── */
+    #projects { padding: var(--section-gap) 0; background: var(--parchment); }
+    .projects-header { margin-bottom: 3.5rem; }
+    .projects-header h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+    .projects-header h2 em { font-style: italic; color: var(--gold); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--cream);
+      border: 1px solid var(--sand);
+      border-radius: 8px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(44,26,14,.1);
+      transform: translateY(-2px);
+    }
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      padding: 2.5rem;
+      background: var(--espresso);
+      color: var(--cream);
+      border-color: var(--bark);
+    }
+    .project-card.featured .tag { color: var(--sand); border-color: var(--bark); }
+    .project-card.featured h3 { color: var(--cream); }
+    .project-card.featured p { color: var(--sand); }
+    .project-card h3 {
+      font-family: var(--ff-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--espresso);
+      line-height: 1.2;
+    }
+    .project-card p { font-size: .9rem; color: var(--mist); line-height: 1.65; }
+    .project-link {
+      margin-top: auto;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .project-link::after { content: '→'; }
+    .featured-visual {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+    .sb-stat {
+      display: flex;
+      align-items: baseline;
+      gap: .5rem;
+    }
+    .sb-stat .num {
+      font-family: var(--ff-display);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .sb-stat .lbl {
+      font-size: .78rem;
+      color: var(--sand);
+      font-family: var(--ff-mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .sb-tagline {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--sand);
+      border-top: 1px solid var(--bark);
+      padding-top: .75rem;
+      margin-top: .5rem;
+    }
+
+    /* ── EXPERIENCE ──────────────────────────────────────── */
+    #experience { padding: var(--section-gap) 0; }
+    #experience h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin-bottom: 3.5rem;
+    }
+    #experience h2 em { font-style: italic; color: var(--gold); }
+    .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2.5rem;
+      padding: 2.2rem 0;
+      border-top: 1px solid var(--parchment);
+      position: relative;
+    }
+    .exp-item:last-child { border-bottom: 1px solid var(--parchment); }
+    .exp-date {
+      font-family: var(--ff-mono);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      color: var(--mist);
+      padding-top: .25rem;
+    }
+    .exp-content h4 {
+      font-family: var(--ff-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--espresso);
+      margin-bottom: .15rem;
+    }
+    .exp-content .company {
+      font-size: .82rem;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: .04em;
+      margin-bottom: .7rem;
+    }
+    .exp-content ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+    .exp-content ul li {
+      font-size: .88rem;
+      color: var(--bark);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-content ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--sand);
+      font-size: .8rem;
+    }
+
+    /* ── CERTIFICATIONS ──────────────────────────────────── */
+    #credentials { padding: var(--section-gap) 0; background: var(--parchment); }
+    #credentials h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin-bottom: 3rem;
+    }
+    #credentials h2 em { font-style: italic; color: var(--gold); }
+    .creds-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .cred-card {
+      background: var(--cream);
+      border: 1px solid var(--sand);
+      border-radius: 6px;
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .cred-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .cred-card h4 {
+      font-family: var(--ff-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--espresso);
+      line-height: 1.25;
+      margin-bottom: .2rem;
+    }
+    .cred-card p { font-size: .8rem; color: var(--mist); }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 2.5rem;
+    }
+    .skill-pill {
+      background: var(--cream);
+      border: 1px solid var(--sand);
+      border-radius: 100px;
+      padding: .35em 1em;
+      font-size: .8rem;
+      color: var(--bark);
+      font-family: var(--ff-mono);
+      letter-spacing: .04em;
+    }
+
+    /* ── MUSIC / HOBBIES ─────────────────────────────────── */
+    #beyond { padding: var(--section-gap) 0; }
+    #beyond h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin-bottom: 3rem;
+    }
+    #beyond h2 em { font-style: italic; color: var(--gold); }
+    .beyond-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+    .beyond-card {
+      background: var(--parchment);
+      border: 1px solid var(--sand);
+      border-radius: 8px;
+      padding: 1.6rem;
+      transition: box-shadow .2s;
+    }
+    .beyond-card:hover { box-shadow: 0 4px 20px rgba(44,26,14,.08); }
+    .beyond-card .bc-icon { font-size: 2rem; margin-bottom: .9rem; }
+    .beyond-card h4 {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--espresso);
+      margin-bottom: .4rem;
+    }
+    .beyond-card p { font-size: .85rem; color: var(--mist); line-height: 1.6; }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    #contact {
+      padding: var(--section-gap) 0;
+      background: var(--espresso);
+      color: var(--cream);
+    }
+    #contact .section-label { color: var(--gold); }
+    #contact h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+    #contact h2 em { font-style: italic; color: var(--gold); }
+    #contact .sub {
+      color: var(--sand);
+      font-size: .97rem;
+      max-width: 50ch;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+    .contact-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .contact-item {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 6px;
+      padding: 1.4rem;
+    }
+    .contact-item .ci-label {
+      font-family: var(--ff-mono);
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+    .contact-item a {
+      color: var(--cream);
+      font-size: .9rem;
+      word-break: break-word;
+      transition: color .2s;
+    }
+    .contact-item a:hover { color: var(--gold); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--espresso);
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 2rem 0;
+      color: var(--mist);
+      font-size: .8rem;
+      text-align: center;
+    }
+    footer span { color: var(--gold); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .project-card.featured { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: .5rem; }
+      .contact-cols { grid-template-columns: 1fr; }
+    }
+
+    /* ── SCROLL FADE ─────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <div class="wordmark">Moses Kabuswe <span>Jr.</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#beyond">Beyond</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text fade-in">
+        <h1>Hi, I'm<br/><em>Moses.</em></h1>
+        <p class="eyebrow">I'm a <span id="rotating-word">accountant</span>.</p>
+        <p class="bio">
+          I work as a staff accountant at Lifesong for Orphans, I'm building a coffee app called Social Brew,
+          I make music, and I pick up consulting work on the side. This page is just a place to see
+          what I'm up to.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">See my work</a>
+          <a href="#contact" class="btn btn-outline">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="role-card">
+          <div class="rc-label"><span class="rc-dot" style="background:#b8882a"></span>Day Job</div>
+          <div class="rc-title">Staff Accountant</div>
+          <div class="rc-sub">Lifesong for Orphans</div>
+        </div>
+        <div class="role-card">
+          <div class="rc-label"><span class="rc-dot" style="background:#5c3d1e"></span>Founder</div>
+          <div class="rc-title">Social Brew</div>
+          <div class="rc-sub">Independent coffee, finally has a community</div>
+        </div>
+        <div class="role-card">
+          <div class="rc-label"><span class="rc-dot" style="background:#9e8f7f"></span>Consulting</div>
+          <div class="rc-title">Amazon & Books</div>
+          <div class="rc-sub">E-commerce + bookkeeping cleanup</div>
+        </div>
+        <div class="role-card">
+          <div class="rc-label"><span class="rc-dot" style="background:#e0ceaf"></span>Music</div>
+          <div class="rc-title">Original Artist</div>
+          <div class="rc-sub">Streaming on all platforms</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left fade-in">
+        <p class="section-label">About</p>
+        <h2>A bit about<br/><em>me.</em></h2>
+        <p>
+          I was born and raised in Zambia, moved to the US at 14, and have been in Bloomington, IL since.
+          I studied accounting at Taylor University and graduated in 2023. Since then I've been working
+          at Lifesong for Orphans, a nonprofit that supports orphan care around the world — which hits
+          differently when you grew up in Zambia. The work involves fund accounting, financial reporting,
+          and internal controls across programs in several countries.
+        </p>
+        <br/>
+        <p>
+          I'm married to my wife, Goodness. Outside of work and family, I started Social Brew, make music,
+          help people with their taxes during tax season, and do occasional consulting work.
+          A lot going on — but it all feels connected.
+        </p>
+      </div>
+      <div class="about-right fade-in">
+        <div class="trait-row">
+          <div class="trait-icon">📊</div>
+          <div>
+            <h4>Accounting & Finance</h4>
+            <p>CNAP certified, currently working toward the CIA. Day-to-day work covers fund accounting, nonprofit compliance, ERP systems, and financial reporting.</p>
+          </div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-icon">☕</div>
+          <div>
+            <h4>Social Brew</h4>
+            <p>A community app for discovering independent coffee shops. No chains, no paid placement — just real ratings from real visits.</p>
+          </div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-icon">🎵</div>
+          <div>
+            <h4>Music</h4>
+            <p>I write and record original music under <strong>Moses Kabuswe</strong>. Available on Spotify, Apple Music, and the other major platforms.</p>
+          </div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-icon">🌍</div>
+          <div>
+            <h4>Lifesong for Orphans</h4>
+            <p>A nonprofit I care about. The mission — supporting orphans and vulnerable children globally — is a big part of why the work matters to me.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="projects-header fade-in">
+      <p class="section-label">Projects & Ventures</p>
+      <h2>What I'm <em>working on.</em></h2>
+    </div>
+    <div class="projects-grid">
+
+      <!-- FEATURED: Social Brew -->
+      <div class="project-card featured fade-in">
+        <div>
+          <span class="tag">Founder · 2026</span>
+          <h3 style="font-size:1.9rem; margin-top:.7rem; margin-bottom:.8rem;">Social Brew</h3>
+          <p style="color:var(--sand); font-size:.95rem; line-height:1.75; margin-bottom:1.4rem;">
+            Social Brew is an app for finding and rating independent coffee shops.
+            Every shop on the platform is independently owned — no chains, ever.
+            Users rate visits using a Mug Fill Score, and shops get discovered
+            through real activity, not paid placement. I started it because I wanted
+            something like this to exist.
+          </p>
+          <a href="https://www.socialbrewapp.com" target="_blank" class="project-link" style="color:var(--gold);">Visit socialbrewapp.com</a>
+        </div>
+        <div class="featured-visual">
+          <div class="sb-stat">
+            <span class="num">311</span>
+            <span class="lbl">Shops listed</span>
+          </div>
+          <div class="sb-stat">
+            <span class="num">94</span>
+            <span class="lbl">Brewers</span>
+          </div>
+          <div class="sb-stat">
+            <span class="num">26</span>
+            <span class="lbl">States</span>
+          </div>
+          <div class="sb-tagline">"Independent coffee, finally has a community."</div>
+        </div>
+      </div>
+
+      <!-- Amazon Consulting -->
+      <div class="project-card fade-in">
+        <span class="tag">Consulting</span>
+        <h3>Amazon Listing Consulting</h3>
+        <p>I help a small business manage and optimize their Amazon presence — specifically around product listing structure, parent-child variations, and keeping everything organized on the backend.</p>
+      </div>
+
+      <!-- Coffee Equipment Scanner App -->
+      <div class="project-card fade-in">
+        <span class="tag">In Development</span>
+        <h3>Coffee Equipment Scanner App</h3>
+        <p>A mobile app for scanning and logging coffee equipment, built for the same company I consult with. Still in development.</p>
+      </div>
+
+      <!-- Bookkeeping -->
+      <div class="project-card fade-in">
+        <span class="tag">Services · Starting Soon</span>
+        <h3>Bookkeeping Services</h3>
+        <p>Helping small businesses clean up and maintain their books. Something I'm starting to take on as a side service — reach out if you need help getting organized.</p>
+        <a href="mailto:Moses.kabuswe@gmail.com" class="project-link">Get in touch</a>
+      </div>
+
+      <!-- Tax Prep -->
+      <div class="project-card fade-in">
+        <span class="tag">Seasonal</span>
+        <h3>Tax Preparation</h3>
+        <p>During tax season I help prepare individual returns (1040) alongside a local CPA. H&R Block course certified.</p>
+        <a href="mailto:Moses.kabuswe@gmail.com" class="project-link">Inquire</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label fade-in">Work History</p>
+    <h2 class="fade-in"><em>Experience.</em></h2>
+    <div class="exp-timeline">
+
+      <div class="exp-item fade-in">
+        <div class="exp-date">2023 – Present</div>
+        <div class="exp-content">
+          <h4>Staff Accountant <span style="font-size:.72rem; color:var(--gold); font-family:var(--ff-mono); font-weight:400; margin-left:.6rem; letter-spacing:.04em;">→ Program Accountant · July 2026</span></h4>
+          <div class="company">Lifesong for Orphans · Gridley, IL</div>
+          <ul>
+            <li>Account reconciliation, journal entries, and month-end close</li>
+            <li>Programs include Welcome Home Haiti, Vivace Café, New Day Orphanage, and Morgan Stanley investment portfolio</li>
+            <li>Fund accounting and church fund reporting</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-date">2025 – Present</div>
+        <div class="exp-content">
+          <h4>Tax Preparer</h4>
+          <div class="company">Uplift Consulting · Bloomington, IL (Seasonal)</div>
+          <ul>
+            <li>Individual income tax returns (1040) during busy season</li>
+            <li>Working alongside a local CPA firm</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-date">2022</div>
+        <div class="exp-content">
+          <h4>Accounting Intern</h4>
+          <div class="company">Lifesong for Orphans · Gridley, IL</div>
+          <ul>
+            <li>Internal controls analysis for Lifesong projects in Zambia, Ukraine, and Haiti</li>
+            <li>Month-end closing and journal entries</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-date">2021 – 2022</div>
+        <div class="exp-content">
+          <h4>Business Office Assistant</h4>
+          <div class="company">Taylor University · Upland, IN</div>
+          <ul>
+            <li>Filing, data organization, and term billing reports</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item fade-in">
+        <div class="exp-date">2018 – 2019</div>
+        <div class="exp-content">
+          <h4>Accounting Intern</h4>
+          <div class="company">Watershed Foods · Gridley, IL</div>
+          <ul>
+            <li>Costing method review (FIFO vs. LIFO) and monthly inventory counts</li>
+            <li>Cost analysis for in-house liquid nitrogen production</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials">
+  <div class="container">
+    <p class="section-label fade-in">Certifications & Education</p>
+    <h2 class="fade-in">Education &amp; <em>credentials.</em></h2>
+    <div class="creds-grid fade-in">
+      <div class="cred-card">
+        <div class="cred-icon">🏅</div>
+        <div>
+          <h4>CNAP</h4>
+          <p>Certified Nonprofit Accounting Professional · 2025</p>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">📋</div>
+        <div>
+          <h4>CIA (In Progress)</h4>
+          <p>Certified Internal Auditor — currently working toward designation</p>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">💼</div>
+        <div>
+          <h4>H&R Block Tax Course</h4>
+          <p>Income Tax Course Completion · 2025</p>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">🎓</div>
+        <div>
+          <h4>B.A. Accounting</h4>
+          <p>Taylor University · Graduated May 2023</p>
+        </div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">📊</div>
+        <div>
+          <h4>Microsoft Excel Certified</h4>
+          <p>Advanced spreadsheet proficiency</p>
+        </div>
+      </div>
+    </div>
+    <div class="skills-list fade-in">
+      <span class="skill-pill">Sage Intacct</span>
+      <span class="skill-pill">Inna Track ERP</span>
+      <span class="skill-pill">Salesforce CRM</span>
+      <span class="skill-pill">Fund Accounting</span>
+      <span class="skill-pill">Internal Controls</span>
+      <span class="skill-pill">Financial Reporting</span>
+      <span class="skill-pill">Nonprofit Compliance</span>
+      <span class="skill-pill">Budget Development</span>
+      <span class="skill-pill">1040 Tax Prep</span>
+      <span class="skill-pill">Amazon E-Commerce</span>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND -->
+<section id="beyond">
+  <div class="container">
+    <p class="section-label fade-in">Outside of Work</p>
+    <h2 class="fade-in">Other <em>things.</em></h2>
+    <div class="beyond-grid fade-in">
+      <div class="beyond-card">
+        <div class="bc-icon">🎵</div>
+        <h4>Music</h4>
+        <p>I write and record my own music under <strong>Moses Kabuswe</strong>. Find it on
+          <a href="https://open.spotify.com/search/moses%20kabuswe" target="_blank" style="color:var(--gold);">Spotify</a>,
+          <a href="https://music.apple.com/us/search?term=moses+kabuswe" target="_blank" style="color:var(--gold);">Apple Music</a>,
+          <a href="https://www.youtube.com/results?search_query=moses+kabuswe" target="_blank" style="color:var(--gold);">YouTube</a>,
+          and all other major platforms.
+        </p>
+      </div>
+      <div class="beyond-card">
+        <div class="bc-icon">⚽</div>
+        <h4>Soccer</h4>
+        <p>Grew up playing in Zambia. It never really leaves you.</p>
+      </div>
+      <div class="beyond-card">
+        <div class="bc-icon">📖</div>
+        <h4>Reading</h4>
+        <p>Only if the book actually grips me. I'm not interested in forcing my way through something just to say I finished it.</p>
+      </div>
+      <div class="beyond-card">
+        <div class="bc-icon">💬</div>
+        <h4>Conversations</h4>
+        <p>I ask a lot of questions. I like talking through ideas, debating things, and hearing how other people see the world.</p>
+      </div>
+      <div class="beyond-card">
+        <div class="bc-icon">🏋️</div>
+        <h4>Working Out</h4>
+        <p>I go in seasons. When I'm in one, I'm consistent. When I'm not, I'm not.</p>
+      </div>
+      <div class="beyond-card">
+        <div class="bc-icon">🌍</div>
+        <h4>Keeping Up</h4>
+        <p>News, trends, what's happening — I like staying current. Maybe it's the journalist instinct without the journalism degree.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label fade-in">Get In Touch</p>
+    <h2 class="fade-in">Say <em>hello.</em></h2>
+    <p class="sub fade-in">Feel free to reach out through whichever email makes the most sense for what you have in mind.</p>
+    <div class="contact-cols fade-in">
+      <div class="contact-item">
+        <div class="ci-label">Personal</div>
+        <a href="mailto:Moses.kabuswe@gmail.com">Moses.kabuswe@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="ci-label">Social Brew</div>
+        <a href="mailto:Moses@socialbrewapp.com">Moses@socialbrewapp.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="ci-label">Lifesong / Work</div>
+        <a href="mailto:moses@lifesong.org">moses@lifesong.org</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Moses Kabuswe Jr. &nbsp;·&nbsp; Bloomington, IL &nbsp;<span>☕</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Rotating word
+  const words = [
+    'accountant', 'founder', 'musician', 'learner',
+    'consultant', 'tax preparer', 'builder', 'entrepreneur',
+    'creator', 'coffee lover'
+  ];
+  let idx = 0;
+  const el = document.getElementById('rotating-word');
+  setInterval(() => {
+    el.classList.add('fade-out');
+    setTimeout(() => {
+      idx = (idx + 1) % words.length;
+      el.textContent = words[idx];
+      el.classList.remove('fade-out');
+      el.classList.add('fade-in-word');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        el.classList.remove('fade-in-word');
+      }));
+    }, 300);
+  }, 2000);
+</script>
+
+</body>
+</html>
