@@ -215,9 +215,10 @@
     .hero-headshot {
       width: 100%;
       max-width: 380px;
-      height: 500px;
+      height: auto;
+      aspect-ratio: 3 / 4;
       object-fit: cover;
-      object-position: center top;
+      object-position: center 10%;
       border-radius: 8px;
       border: 1px solid var(--sand);
       box-shadow: 0 8px 40px rgba(44,26,14,.12);
@@ -589,7 +590,7 @@
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 768px) {
       .hero-inner { grid-template-columns: 1fr; }
-      .hero-headshot { height: 320px; max-width: 100%; }
+      .hero-headshot { max-width: 280px; aspect-ratio: 3 / 4; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .headshot { width: 140px; height: 180px; }
       .project-card.featured { grid-template-columns: 1fr; }
